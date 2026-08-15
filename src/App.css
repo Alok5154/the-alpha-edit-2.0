@@ -1,0 +1,59 @@
+/* Main App specific styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  perspective: 1400px;
+}
+
+.app-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 34%, rgba(120, 220, 255, 0.035) 42%, transparent 52% 100%),
+    linear-gradient(245deg, transparent 0 46%, rgba(217, 253, 49, 0.035) 54%, transparent 66% 100%);
+  background-size: 180% 180%;
+  animation: ambientSweep 16s ease-in-out infinite;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1001;
+  transform-origin: 0% 50%;
+  background: linear-gradient(90deg, #78dcff, var(--accent-neon));
+  box-shadow: 0 0 18px rgba(217, 253, 49, 0.45), 0 0 40px rgba(120, 220, 255, 0.2);
+}
+
+.scroll-progress::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-neon);
+  box-shadow: 0 0 12px rgba(217, 253, 49, 0.8), 0 0 24px rgba(217, 253, 49, 0.4);
+}
+
+@keyframes ambientSweep {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}

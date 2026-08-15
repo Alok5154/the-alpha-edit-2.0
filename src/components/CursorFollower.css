@@ -1,0 +1,117 @@
+/* Outer Ambient Trail Aura */
+.cursor-aura {
+  position: fixed;
+  top: -60px;
+  left: -60px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 253, 49, 0.15) 0%, rgba(120, 220, 255, 0.08) 50%, transparent 75%);
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.4s ease;
+}
+
+.cursor-aura.visible {
+  opacity: 1;
+}
+
+/* Main Follower Ring */
+.cursor-follower {
+  position: fixed;
+  top: -22px;
+  left: -22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(217, 253, 49, 0.5);
+  background: rgba(217, 253, 49, 0.03);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(217, 253, 49, 0.12), inset 0 0 10px rgba(217, 253, 49, 0.05);
+  transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor-follower.visible {
+  opacity: 1;
+}
+
+/* Hover States */
+.cursor-follower.hover-button {
+  border-color: rgba(217, 253, 49, 0.9);
+  background: rgba(217, 253, 49, 0.12);
+  box-shadow: 0 0 30px rgba(217, 253, 49, 0.35), inset 0 0 15px rgba(217, 253, 49, 0.15);
+}
+
+.cursor-follower.hover-card {
+  border-color: rgba(120, 220, 255, 0.9);
+  background: rgba(120, 220, 255, 0.15);
+  box-shadow: 0 0 35px rgba(120, 220, 255, 0.4), inset 0 0 20px rgba(120, 220, 255, 0.2);
+}
+
+.cursor-follower.hover-input {
+  width: 8px;
+  height: 32px;
+  border-radius: 4px;
+  top: -16px;
+  left: -4px;
+  border-color: var(--accent-neon);
+  background: var(--accent-neon);
+}
+
+.cursor-follower.pressed {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Text Label inside follower ring */
+.cursor-label {
+  font-family: var(--font-main);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* Precision Inner Core Dot */
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-neon);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  box-shadow: 0 0 12px rgba(217, 253, 49, 0.8);
+  transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+.cursor-dot.visible {
+  opacity: 1;
+}
+
+.cursor-dot.hidden-dot {
+  opacity: 0;
+}
+
+/* Hide custom cursor on touch screens */
+@media (max-width: 768px), (hover: none) {
+  .cursor-aura,
+  .cursor-follower,
+  .cursor-dot {
+    display: none !important;
+  }
+}

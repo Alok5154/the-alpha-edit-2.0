@@ -1,0 +1,535 @@
+.motion-graphics {
+  position: fixed;
+  inset: -18vh -12vw;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.85;
+  transform-style: preserve-3d;
+}
+
+.mg-perspective {
+  position: absolute;
+  inset: 0;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.mg-orbit,
+.mg-beam,
+.mg-cube,
+.mg-timeline,
+.mg-waveform,
+.mg-keyframes,
+.mg-edit-frame {
+  position: absolute;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.mg-orbit {
+  border: 1px solid rgba(120, 220, 255, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 60px rgba(120, 220, 255, 0.06),
+    inset 0 0 42px rgba(217, 253, 49, 0.035);
+  animation: mgOrbitSpin 18s linear infinite;
+}
+
+.mg-orbit::before,
+.mg-orbit::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d9fd31;
+  box-shadow: 0 0 22px rgba(217, 253, 49, 0.72);
+}
+
+.mg-orbit::before {
+  top: 12%;
+  left: 18%;
+}
+
+.mg-orbit::after {
+  right: 18%;
+  bottom: 14%;
+  background: #78dcff;
+  box-shadow: 0 0 22px rgba(120, 220, 255, 0.72);
+}
+
+.mg-orbit-one {
+  width: 30rem;
+  height: 30rem;
+  top: 6%;
+  right: 3%;
+  transform: rotateX(68deg) rotateZ(16deg);
+}
+
+.mg-orbit-two {
+  width: 24rem;
+  height: 24rem;
+  left: -4rem;
+  top: 38%;
+  animation-duration: 24s;
+  animation-direction: reverse;
+  transform: rotateX(72deg) rotateZ(-26deg);
+}
+
+.mg-orbit-three {
+  width: 18rem;
+  height: 18rem;
+  right: 18%;
+  bottom: 4%;
+  animation-duration: 21s;
+  transform: rotateX(62deg) rotateZ(36deg);
+}
+
+.mg-beam {
+  width: 46rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 220, 255, 0.32), rgba(217, 253, 49, 0.25), transparent);
+  filter: blur(0.2px);
+  animation: mgBeamDrift 10s ease-in-out infinite;
+}
+
+.mg-beam-one {
+  top: 22%;
+  left: 5%;
+  transform: rotateZ(-14deg) translateZ(-120px);
+}
+
+.mg-beam-two {
+  right: 0;
+  bottom: 25%;
+  animation-delay: -5s;
+  transform: rotateZ(18deg) translateZ(-180px);
+}
+
+.mg-timeline {
+  width: 28rem;
+  height: 7.5rem;
+  border: 1px solid rgba(120, 220, 255, 0.16);
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, rgba(217, 253, 49, 0.05) 0 2px, transparent 2px 100%),
+    repeating-linear-gradient(90deg, transparent 0 30px, rgba(255, 255, 255, 0.07) 30px 31px),
+    rgba(3, 8, 18, 0.16);
+  box-shadow:
+    0 0 42px rgba(120, 220, 255, 0.06),
+    inset 0 0 30px rgba(120, 220, 255, 0.035);
+  overflow: hidden;
+  animation: mgTimelineDrift 13s ease-in-out infinite;
+}
+
+.mg-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 32%;
+  width: 2px;
+  background: #d9fd31;
+  box-shadow: 0 0 18px rgba(217, 253, 49, 0.7);
+  animation: mgPlayhead 4.8s ease-in-out infinite;
+}
+
+.mg-timeline i {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(120, 220, 255, 0.12), rgba(217, 253, 49, 0.16), rgba(120, 220, 255, 0.08));
+}
+
+.mg-timeline i:nth-child(1) { top: 1rem; width: 64%; }
+.mg-timeline i:nth-child(2) { top: 2.7rem; width: 82%; left: 3.6rem; }
+.mg-timeline i:nth-child(3) { top: 4.4rem; width: 48%; left: 2rem; }
+.mg-timeline i:nth-child(4) { top: 6.1rem; width: 72%; left: 5rem; }
+
+.mg-timeline-one {
+  left: 6%;
+  bottom: 18%;
+  transform: rotateX(62deg) rotateZ(-12deg) translateZ(-170px);
+}
+
+.mg-timeline-two {
+  right: 4%;
+  top: 18%;
+  width: 22rem;
+  height: 6rem;
+  animation-delay: -6s;
+  transform: rotateX(64deg) rotateZ(16deg) translateZ(-150px);
+}
+
+.mg-waveform {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 5.25rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(217, 253, 49, 0.13);
+  border-radius: 999px;
+  background: rgba(3, 8, 18, 0.14);
+  box-shadow: 0 0 34px rgba(217, 253, 49, 0.055);
+  animation: mgWaveFloat 9s ease-in-out infinite;
+}
+
+.mg-waveform i {
+  width: 3px;
+  height: calc(14px + var(--bar, 1) * 7px);
+  border-radius: 999px;
+  background: linear-gradient(to top, rgba(120, 220, 255, 0.28), rgba(217, 253, 49, 0.58));
+  animation: mgWavePulse 1.7s ease-in-out infinite;
+  animation-delay: calc(var(--bar, 1) * -0.08s);
+}
+
+.mg-waveform i:nth-child(1) { --bar: 1; }
+.mg-waveform i:nth-child(2) { --bar: 4; }
+.mg-waveform i:nth-child(3) { --bar: 2; }
+.mg-waveform i:nth-child(4) { --bar: 6; }
+.mg-waveform i:nth-child(5) { --bar: 3; }
+.mg-waveform i:nth-child(6) { --bar: 8; }
+.mg-waveform i:nth-child(7) { --bar: 5; }
+.mg-waveform i:nth-child(8) { --bar: 2; }
+.mg-waveform i:nth-child(9) { --bar: 7; }
+.mg-waveform i:nth-child(10) { --bar: 3; }
+.mg-waveform i:nth-child(11) { --bar: 6; }
+.mg-waveform i:nth-child(12) { --bar: 4; }
+.mg-waveform i:nth-child(13) { --bar: 8; }
+.mg-waveform i:nth-child(14) { --bar: 2; }
+.mg-waveform i:nth-child(15) { --bar: 5; }
+.mg-waveform i:nth-child(16) { --bar: 3; }
+
+.mg-waveform-one {
+  top: 62%;
+  left: 30%;
+  transform: rotateX(58deg) rotateZ(8deg) translateZ(-80px);
+}
+
+.mg-keyframes {
+  width: 16rem;
+  height: 5rem;
+  border-top: 1px dashed rgba(120, 220, 255, 0.18);
+  animation: mgKeyframeSlide 11s ease-in-out infinite;
+}
+
+.mg-keyframes i {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(217, 253, 49, 0.16);
+  border: 1px solid rgba(217, 253, 49, 0.42);
+  transform: rotate(45deg);
+  box-shadow: 0 0 18px rgba(217, 253, 49, 0.2);
+}
+
+.mg-keyframes i:nth-child(1) { left: 0; top: -8px; }
+.mg-keyframes i:nth-child(2) { left: 30%; top: 24px; border-color: rgba(120, 220, 255, 0.42); }
+.mg-keyframes i:nth-child(3) { left: 62%; top: -8px; }
+.mg-keyframes i:nth-child(4) { right: 0; top: 24px; border-color: rgba(120, 220, 255, 0.42); }
+
+.mg-keyframes-one {
+  top: 34%;
+  left: 44%;
+  transform: rotateX(66deg) rotateZ(-8deg) translateZ(-70px);
+}
+
+.mg-keyframes-two {
+  bottom: 8%;
+  right: 22%;
+  animation-delay: -5s;
+  transform: rotateX(62deg) rotateZ(18deg) translateZ(-110px);
+}
+
+.mg-edit-frame {
+  width: 13rem;
+  height: 8rem;
+  border: 1px solid rgba(120, 220, 255, 0.1);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(120, 220, 255, 0.055), transparent 44%),
+    rgba(5, 5, 5, 0.08);
+  box-shadow: 0 0 40px rgba(120, 220, 255, 0.06);
+  animation: mgFrameFloat 12s ease-in-out infinite;
+}
+
+.frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: rgba(217, 253, 49, 0.56);
+}
+
+.corner-one {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-two {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.corner-three {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-four {
+  right: -1px;
+  bottom: -1px;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.play-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  border-left: 28px solid rgba(217, 253, 49, 0.58);
+  transform: translate(-38%, -50%);
+  filter: drop-shadow(0 0 16px rgba(217, 253, 49, 0.34));
+}
+
+.mg-edit-frame-one {
+  top: 9%;
+  left: 32%;
+  transform: rotateX(54deg) rotateY(-12deg) rotateZ(5deg) translateZ(-120px);
+}
+
+.mg-edit-frame-two {
+  right: 18%;
+  bottom: 28%;
+  width: 10rem;
+  height: 6.25rem;
+  animation-delay: -7s;
+  transform: rotateX(58deg) rotateY(16deg) rotateZ(-8deg) translateZ(-90px);
+}
+
+.mg-cube {
+  width: 72px;
+  height: 72px;
+  transform-origin: center;
+  animation: mgCubeTumble 16s ease-in-out infinite;
+}
+
+.cube-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(217, 253, 49, 0.22);
+  background:
+    linear-gradient(135deg, rgba(120, 220, 255, 0.08), transparent),
+    rgba(5, 5, 5, 0.08);
+  box-shadow: inset 0 0 22px rgba(120, 220, 255, 0.06);
+}
+
+.cube-front {
+  transform: translateZ(36px);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(36px);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(36px);
+}
+
+.cube-left {
+  transform: rotateY(-90deg) translateZ(36px);
+}
+
+.cube-top {
+  transform: rotateX(90deg) translateZ(36px);
+}
+
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(36px);
+}
+
+.mg-cube-one {
+  top: 18%;
+  left: 14%;
+}
+
+.mg-cube-two {
+  right: 9%;
+  top: 54%;
+  width: 58px;
+  height: 58px;
+  animation-delay: -6s;
+}
+
+.mg-cube-two .cube-front,
+.mg-cube-two .cube-back,
+.mg-cube-two .cube-right,
+.mg-cube-two .cube-left,
+.mg-cube-two .cube-top,
+.mg-cube-two .cube-bottom {
+  transform-origin: center;
+}
+
+.mg-cube-two .cube-front { transform: translateZ(29px); }
+.mg-cube-two .cube-back { transform: rotateY(180deg) translateZ(29px); }
+.mg-cube-two .cube-right { transform: rotateY(90deg) translateZ(29px); }
+.mg-cube-two .cube-left { transform: rotateY(-90deg) translateZ(29px); }
+.mg-cube-two .cube-top { transform: rotateX(90deg) translateZ(29px); }
+.mg-cube-two .cube-bottom { transform: rotateX(-90deg) translateZ(29px); }
+
+.mg-cube-three {
+  left: 42%;
+  bottom: 9%;
+  width: 48px;
+  height: 48px;
+  animation-delay: -10s;
+}
+
+.mg-cube-three .cube-front { transform: translateZ(24px); }
+.mg-cube-three .cube-back { transform: rotateY(180deg) translateZ(24px); }
+.mg-cube-three .cube-right { transform: rotateY(90deg) translateZ(24px); }
+.mg-cube-three .cube-left { transform: rotateY(-90deg) translateZ(24px); }
+.mg-cube-three .cube-top { transform: rotateX(90deg) translateZ(24px); }
+.mg-cube-three .cube-bottom { transform: rotateX(-90deg) translateZ(24px); }
+
+@keyframes mgOrbitSpin {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes mgBeamDrift {
+  0%, 100% {
+    opacity: 0.18;
+    translate: -5% 0;
+  }
+
+  50% {
+    opacity: 0.58;
+    translate: 9% -18px;
+  }
+}
+
+@keyframes mgCubeTumble {
+  0%, 100% {
+    transform: rotateX(58deg) rotateY(0deg) rotateZ(24deg) translateZ(-90px);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: rotateX(126deg) rotateY(184deg) rotateZ(-18deg) translateZ(-20px);
+    opacity: 0.72;
+  }
+}
+
+@keyframes mgTimelineDrift {
+  0%, 100% {
+    opacity: 0.22;
+    translate: 0 0;
+  }
+
+  50% {
+    opacity: 0.62;
+    translate: 18px -18px;
+  }
+}
+
+@keyframes mgPlayhead {
+  0%, 100% {
+    left: 18%;
+  }
+
+  50% {
+    left: 76%;
+  }
+}
+
+@keyframes mgWaveFloat {
+  0%, 100% {
+    opacity: 0.25;
+    translate: 0 0;
+  }
+
+  50% {
+    opacity: 0.66;
+    translate: -16px -14px;
+  }
+}
+
+@keyframes mgWavePulse {
+  0%, 100% {
+    scale: 1 0.72;
+  }
+
+  50% {
+    scale: 1 1.22;
+  }
+}
+
+@keyframes mgKeyframeSlide {
+  0%, 100% {
+    opacity: 0.24;
+    translate: -12px 0;
+  }
+
+  50% {
+    opacity: 0.7;
+    translate: 18px -10px;
+  }
+}
+
+@keyframes mgFrameFloat {
+  0%, 100% {
+    opacity: 0.22;
+    translate: 0 0;
+  }
+
+  50% {
+    opacity: 0.64;
+    translate: 14px -18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .motion-graphics {
+    opacity: 0.42;
+  }
+
+  .mg-cube,
+  .mg-orbit-three,
+  .mg-keyframes,
+  .mg-edit-frame-two,
+  .mg-timeline-two {
+    display: none;
+  }
+
+  .mg-orbit-one,
+  .mg-orbit-two {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .mg-timeline-one {
+    width: 18rem;
+    left: -4rem;
+  }
+
+  .mg-waveform-one {
+    left: 8%;
+  }
+}

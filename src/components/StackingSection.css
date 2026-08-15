@@ -1,0 +1,39 @@
+.stacking-card-wrapper {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-color);
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.stacking-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center top;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  transition: box-shadow 0.4s ease;
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+  .stacking-card-wrapper {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+  
+  .stacking-card-inner {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    scale: 1 !important;
+  }
+}

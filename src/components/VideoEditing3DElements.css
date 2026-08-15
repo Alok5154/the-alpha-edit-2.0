@@ -1,0 +1,251 @@
+.video-editing-3d-bg {
+  position: fixed;
+  inset: -10vh -5vw;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ve-perspective-wrapper {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Common 3D Glass Card Styling */
+.ve-card-3d {
+  position: absolute;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(10, 16, 35, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.04);
+  transform-style: preserve-3d;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.card-glass-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 20%, rgba(217, 253, 49, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* 1. Clapperboard Position */
+.ve-clapperboard {
+  top: 15%;
+  right: 6%;
+  transform: rotateX(15deg) rotateY(-18deg) rotateZ(6deg) translateZ(-60px);
+}
+
+.ve-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-title {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--accent-neon);
+}
+
+.label-sub {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+/* 2. Timeline Track Position */
+.ve-timeline-track {
+  top: 42%;
+  left: 3%;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 260px;
+  transform: rotateX(18deg) rotateY(15deg) rotateZ(-4deg) translateZ(-80px);
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #78dcff;
+  letter-spacing: 0.5px;
+}
+
+.timeline-clips {
+  display: flex;
+  gap: 0.35rem;
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.clip {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.clip-a { background: rgba(217, 253, 49, 0.15); border-color: rgba(217, 253, 49, 0.4); color: #fff; }
+.clip-b { background: rgba(120, 220, 255, 0.15); border-color: rgba(120, 220, 255, 0.4); color: #fff; }
+.clip-c { background: rgba(255, 255, 255, 0.1); }
+
+.timeline-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 45%;
+  width: 2px;
+  background: var(--accent-neon);
+  box-shadow: 0 0 12px var(--accent-neon);
+}
+
+/* 3. Scissors Position */
+.ve-scissors {
+  top: 68%;
+  right: 5%;
+  transform: rotateX(12deg) rotateY(-14deg) rotateZ(10deg) translateZ(-50px);
+}
+
+.ve-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: rgba(217, 253, 49, 0.1);
+  color: var(--accent-neon);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* 4. Color Grading Sliders */
+.ve-color-grade {
+  top: 28%;
+  left: 55%;
+  transform: rotateX(20deg) rotateY(-12deg) rotateZ(-8deg) translateZ(-100px);
+}
+
+.grade-meters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 90px;
+}
+
+.meter {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #78dcff, var(--accent-neon));
+  border-radius: 4px;
+}
+
+/* 5. Audio Equalizer Spectrum */
+.ve-audio-spectrum {
+  top: 80%;
+  left: 25%;
+  transform: rotateX(14deg) rotateY(18deg) rotateZ(5deg) translateZ(-70px);
+}
+
+.audio-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 24px;
+}
+
+.audio-bars i {
+  width: 3px;
+  background: var(--accent-neon);
+  border-radius: 2px;
+  animation: audioPulse 1.2s ease-in-out infinite alternate;
+}
+
+.audio-bars i:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.audio-bars i:nth-child(2) { height: 80%; animation-delay: 0.3s; }
+.audio-bars i:nth-child(3) { height: 50%; animation-delay: 0.2s; }
+.audio-bars i:nth-child(4) { height: 100%; animation-delay: 0.5s; }
+.audio-bars i:nth-child(5) { height: 60%; animation-delay: 0.4s; }
+.audio-bars i:nth-child(6) { height: 90%; animation-delay: 0.2s; }
+.audio-bars i:nth-child(7) { height: 45%; animation-delay: 0.6s; }
+
+@keyframes audioPulse {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.2); }
+}
+
+/* 6. Playback Monitor Frame */
+.ve-monitor-frame {
+  top: 55%;
+  right: 32%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 95px;
+  transform: rotateX(16deg) rotateY(-10deg) rotateZ(-3deg) translateZ(-110px);
+}
+
+.monitor-top {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+}
+
+.monitor-center {
+  margin-top: 0.6rem;
+}
+
+.play-icon {
+  filter: drop-shadow(0 0 10px var(--accent-neon));
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .ve-color-grade,
+  .ve-scissors,
+  .ve-monitor-frame {
+    display: none;
+  }
+
+  .ve-clapperboard {
+    top: 10%;
+    right: 2%;
+    scale: 0.8;
+  }
+
+  .ve-timeline-track {
+    top: 50%;
+    left: -10px;
+    scale: 0.8;
+  }
+
+  .ve-audio-spectrum {
+    top: 85%;
+    left: 5%;
+    scale: 0.8;
+  }
+}
